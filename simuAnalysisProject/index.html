@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>simuAnalysisProject</title>
+
+    
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>dorigabay.github.io</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="dorigabay.github.io" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="https://dorigabay.github.io/" />
+<meta property="og:url" content="https://dorigabay.github.io/" />
+<meta property="og:site_name" content="dorigabay.github.io" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="dorigabay.github.io" />
+<script type="application/ld+json">
+{"url":"https://dorigabay.github.io/","@type":"WebSite","headline":"dorigabay.github.io","name":"dorigabay.github.io","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=2b52a3984c02edcef8a1123a14eae8ddfe679a8b">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+    <link rel="shortcut icon" type=""image/x-icon"" href="/simuAnalysisProject/pics/favicon.ico">
+    <link rel="icon" href="/simuAnalysisProject/pics/favicon.ico" type="image/x-icon">
+
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+
+        <img src="/simuAnalysisProject/pics/simuAnalysis_logo.svg" alt="Trulli" width="600" height="300">
+
+        <p></p>
+
+        
+
+        
+        <p class="view"><a href="https://open.spotify.com/user/21aczzmbg2rfljtbq4xfuhyyi?si=6d2be6ce478942ab">SEE WHAT SPONG-SONGS I LIKE THE MOST</a></p>
+        
+
+        
+      </header>
+      <section>
+
+<h2>The simuAnalysis Project</h2>
+
+<div class="section level3">
+<h3 id="installing">Installing:<a class="anchor" aria-label="anchor" href="#installing"></a>
+</h3>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Install development version from GitHub</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"TomerAntman/VCFtoGWAS"</span><span class="op">)</span></code></pre></div>
+</div>
+
+
+
+
+<p>A python package to analyze computational simulations of protein dynamics results from either the atomistic (XTC file format) or the coarse-grain models (DAT file format). This tool calculates the mean Radius of Gyration (RG), the distance between two specified residues, and the approximate FRET measurement for each simulation time point. It saves all the repeated results in one CSV file. Also, the tool enables you to predict the Length Scaling Exponent (LSE, or Flory calculation of the exponent) by fitting Flory’s formula with the results:</p>
+
+<p><img src="/pics/flory_formula.JPG" width="100" /></p>
+
+<p>For the coarse grain model, this tool takes any depth of the directory, searches for the output of Koby’s Lab coarse-grained simulation program, and exports the analysis results in a new directory with the same tree structure as the input directory.<br />
+<br />
+For the atomistic model, this tool takes all the XTC files in the input directory and considers them as repeats of the same experiment.</p>
+
+<h2 id="installation">Installation:</h2>
+
+<p>Clone GitHub repository to your local machine with the following command:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="n">https</span><span class="o">://</span><span class="n">github.com</span><span class="o">/</span><span class="n">dorigabay</span><span class="o">/</span><span class="n">simuAnalysisProject.git</span><span class="w">
+</span></code></pre></div></div>
+<p>Next, make sure you have all the dependencies for this tool (check: dependencies.txt)
+You can add an alias to this tool by editing your .bashrc script:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vi</span><span class="w"> </span><span class="o">~/</span><span class="n">.bashrc</span><span class="w">
+</span></code></pre></div></div>
+<p>And then add the line:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">alias</span><span class="w"> </span><span class="n">simuAnalysis</span><span class="o">=</span><span class="err">”</span><span class="n">theRepoPath</span><span class="o">/</span><span class="n">simuAnalysis.py</span><span class="err">”</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="how-to-use-the-tool">How to use the tool:</h2>
+
+<p>In the GitHub repository, there are example results for short simulations of small proteins (12 residues), ran under both the atomistic and the coarse-grain model.</p>
+
+<h3 id="coarse-grain-analysis">Coarse-grain analysis</h3>
+<p>simuAnalysis will search for the output directories which were given by the simulation program, and will unzip the files and convert them, if it hasn’t been made yet.
+In order to analyze the coarse results you can simply type:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simuAnalysis</span><span class="w"> </span><span class="n">coarse</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">pathToThisRepo</span><span class="o">/</span><span class="n">Example</span><span class="o">/</span><span class="n">coarse</span><span class="w">
+</span></code></pre></div></div>
+<p>The analysis products will be saved as CSV files in a new directory named AnalyzedData, which has the same tree structure as the input directory, to preserve the order of directories to different experiments. If wanted you can change the output path by adding -out argument:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simuAnalysis</span><span class="w"> </span><span class="n">coarse</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">pathToThisRepo</span><span class="o">/</span><span class="n">Example</span><span class="o">/</span><span class="n">coarse</span><span class="w"> </span><span class="o">-</span><span class="n">out</span><span class="w"> </span><span class="n">newPath</span><span class="w">
+</span></code></pre></div></div>
+<p>In order to trim the beginning or the end of the simulation you can add -start or -end or both:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simuAnalysis</span><span class="w"> </span><span class="n">coarse</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">pathToThisRepo</span><span class="o">/</span><span class="n">Example</span><span class="o">/</span><span class="n">coarse</span><span class="w"> </span><span class="o">-</span><span class="n">start</span><span class="w"> </span><span class="n">nStep</span><span class="w"> </span><span class="o">-</span><span class="n">end</span><span class="w"> </span><span class="n">nStep</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="atomistic-analysis">Atomistic analysis</h3>
+<p>For the simple analysis of atomistic XTC files, simply type:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simuAnalysis</span><span class="w"> </span><span class="n">atomistic</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">pathToThisRepo</span><span class="o">/</span><span class="n">Example</span><span class="o">/</span><span class="n">atomistic</span><span class="o">/</span><span class="n">seq1</span><span class="w"> </span><span class="o">-</span><span class="n">seqName</span><span class="w"> </span><span class="n">seq1</span><span class="w">
+</span></code></pre></div></div>
+<p>The analysis products will be saved as CSV files in a new directory named AnalyzedData, if wanted you can change the output path by adding -out argument:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simuAnalysis</span><span class="w"> </span><span class="n">atomistic</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">pathToThisRepo</span><span class="o">/</span><span class="n">Example</span><span class="o">/</span><span class="n">atomistic</span><span class="o">/</span><span class="n">seq1</span><span class="w"> </span><span class="o">-</span><span class="n">seqName</span><span class="w"> </span><span class="n">seq1</span><span class="w"> </span><span class="o">-</span><span class="n">out</span><span class="w"> </span><span class="n">newPath</span><span class="w">
+</span></code></pre></div></div>
+<p>In order to trim the beginning or the end of the simulation you can add -start or -end or both:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simuAnalysis</span><span class="w"> </span><span class="n">atomistic</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">pathToThisRepo</span><span class="o">/</span><span class="n">Example</span><span class="o">/</span><span class="n">atomistic</span><span class="o">/</span><span class="n">seq1</span><span class="w"> </span><span class="o">-</span><span class="n">seqName</span><span class="w"> </span><span class="n">seq1</span><span class="w"> </span><span class="o">-</span><span class="n">start</span><span class="w"> </span><span class="n">nStep</span><span class="w"> </span><span class="o">-</span><span class="n">end</span><span class="w"> </span><span class="n">nStep</span><span class="w">
+</span></code></pre></div></div>
+<p>Additional to those calculations that are also available for the coarse-grain model, simuAnalysis provide a function to estimate FRET measurement (If the Flory Exponent is already known). The value of the exponent needs to be added to the configuration file, as the third element of the query sequence (already been added to the example). Afterward, type: <code class="language-plaintext highlighter-rouge">-calcFRET T</code>. The results will be added to the CSV output file.<br />
+<br />
+If the expected Flory Exponent of the sequence isn’t yet known, you can try to extimate it by using <code class="language-plaintext highlighter-rouge">-runMode calcLSE.</code> This will make simuAnalysis to spit out a figure with the Flory formula fitted to the observed results. If the fitted curve is firmly satisfying, the exponent can be extracted manually (denoted as the parameter ‘b’).</p>
+
+
+      </section>
+      <footer>
+        
+
+      </footer>
+    </div>
+    <script src="/assets/js/scale.fix.js"></script>
+  </body>
+</html>
