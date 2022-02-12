@@ -63,17 +63,15 @@
 <br />
 For the atomistic model, this tool takes all the XTC files in the input directory and considers them as repeats of the same experiment.</p>
 
-<h2 id="configuration-file">Configuration file:</h2>
-<p>First, make sure to have a configuration file in the directory of results to be analyzed.<br />
-The configuration file should be written with a row for each sequence to be analyzed, as follows: sequenceName,residue1position,residue2position<br />
-Example:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>seq1,1,12\
-seq2,1,12\
-seq3,1,12\ If you know the estimated Length Scaling Exponent, and you want to calculate the FRET measurements then you should add a 4th column:
-
-seq1,1,12,0.77\ Sequences names should be precise as typed in the command.
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>seq1,1,12
+seq2,1,12
+seq3,1,12
 </code></pre></div></div>
+<p>If you know the estimated Length Scaling Exponent, and you want to calculate the FRET measurements then you should add a 4th column:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>seq1,1,12,0.77
+</code></pre></div></div>
+<p>Sequences names should be precise as typed in the command.</p>
+
 
 <h2 id="installation">Installation:</h2>
 
