@@ -11,12 +11,12 @@ For the atomistic model, this tool takes all the XTC files in the input director
 ## Installation:
 
 Clone GitHub repository to your local machine with the following command:
-``` python3
+```python
 git clone https://github.com/dorigabay/simuAnalysisProject.git
 ``` 
 Next, make sure you have all the dependencies for this tool (check: dependencies.txt)
 You can add an alias to this tool by editing your .bashrc script:
-```  python3 
+``` python
 vi ~/.bashrc
 ```
 And then add the line:
