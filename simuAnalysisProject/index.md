@@ -11,16 +11,16 @@ For the atomistic model, this tool takes all the XTC files in the input director
 ## Installation:
 
 Clone GitHub repository to your local machine with the following command:
-``` r
+``` python3
 git clone https://github.com/dorigabay/simuAnalysisProject.git
-```
+``` 
 Next, make sure you have all the dependencies for this tool (check: dependencies.txt)
 You can add an alias to this tool by editing your .bashrc script:
-``` r
+```  python3 
 vi ~/.bashrc
 ```
 And then add the line:
-``` r
+``` python3
 alias simuAnalysis=”theRepoPath/simuAnalysis.py”
 ```
 
@@ -31,29 +31,29 @@ In the GitHub repository, there are example results for short simulations of sma
 ### Coarse-grain analysis
 simuAnalysis will search for the output directories which were given by the simulation program, and will unzip the files and convert them, if it hasn’t been made yet.
 In order to analyze the coarse results you can simply type:
-``` r
+``` python3
 simuAnalysis coarse -f pathToThisRepo/Example/coarse
 ```
 The analysis products will be saved as CSV files in a new directory named AnalyzedData, which has the same tree structure as the input directory, to preserve the order of directories to different experiments. If wanted you can change the output path by adding -out argument:
-``` r
+``` python3
 simuAnalysis coarse -f pathToThisRepo/Example/coarse -out newPath
 ```
 In order to trim the beginning or the end of the simulation you can add -start or -end or both:
-``` r
+``` python3
 simuAnalysis coarse -f pathToThisRepo/Example/coarse -start nStep -end nStep
 ```
 
 ### Atomistic analysis
 For the simple analysis of atomistic XTC files, simply type:
-``` r
+``` python3
 simuAnalysis atomistic -f pathToThisRepo/Example/atomistic/seq1 -seqName seq1
 ```
 The analysis products will be saved as CSV files in a new directory named AnalyzedData, if wanted you can change the output path by adding -out argument:
-``` r
+``` python3
 simuAnalysis atomistic -f pathToThisRepo/Example/atomistic/seq1 -seqName seq1 -out newPath
 ```
 In order to trim the beginning or the end of the simulation you can add -start or -end or both:
-``` r
+``` python3
 simuAnalysis atomistic -f pathToThisRepo/Example/atomistic/seq1 -seqName seq1 -start nStep -end nStep
 ```
 Additional to those calculations that are also available for the coarse-grain model, simuAnalysis provide a function to estimate FRET measurement (If the Flory Exponent is already known). The value of the exponent needs to be added to the configuration file, as the third element of the query sequence (already been added to the example). Afterward, type: ``` -calcFRET T```. The results will be added to the CSV output file.\
