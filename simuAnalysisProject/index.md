@@ -47,29 +47,29 @@ In the GitHub repository, there are example results for short simulations of sma
 simuAnalysis will search for the output directories which were given by the simulation program, and will unzip the files and convert them, if it hasn’t been made yet.
 In order to analyze the coarse results you can simply type:
 ``` r
-simuAnalysis coarse --d pathToThisRepo/Example/coarse
+simuAnalysis --simulationType coarse --d pathToThisRepo/Example/coarse
 ```
 The analysis products will be saved as CSV files in a new directory named AnalyzedData, which has the same tree structure as the input directory, to preserve the order of directories to different experiments. If wanted you can change the output path by adding ```--outputDir``` argument:
 ``` r
-simuAnalysis coarse --d pathToThisRepo/Example/coarse --outputDir newPath
+simuAnalysis --simulationType coarse --d pathToThisRepo/Example/coarse --outputDir newPath
 ```
 In order to trim the beginning or the end of the simulation you can add ```--start``` or ```--end``` or both:
 ``` r
-simuAnalysis coarse --d pathToThisRepo/Example/coarse --start nStep --end nStep
+simuAnalysis --simulationType coarse --d pathToThisRepo/Example/coarse --start nStep --end nStep
 ```
 
 ### Atomistic analysis
 For the simple analysis of atomistic XTC files, simply type:
 ``` r
-simuAnalysis atomistic --d pathToThisRepo/Example/atomistic/seq1 --seqName seq1
+simuAnalysis --simulationType atomistic --d pathToThisRepo/Example/atomistic/seq1 --seqName seq1
 ```
 The analysis products will be saved as CSV files in a new directory named AnalyzedData, if wanted you can change the output path by adding ```-out``` argument:
 ``` r
-simuAnalysis atomistic --d pathToThisRepo/Example/atomistic/seq1 --seqName seq1 --outputDir newPath
+simuAnalysis --simulationType atomistic --d pathToThisRepo/Example/atomistic/seq1 --seqName seq1 --outputDir newPath
 ```
 In order to trim the beginning or the end of the simulation you can add ```--start``` or ```--end``` or both:
 ``` r
-simuAnalysis atomistic --d pathToThisRepo/Example/atomistic/seq1 --seqName seq1 --start nStep --end nStep
+simuAnalysis --simulationType atomistic --d pathToThisRepo/Example/atomistic/seq1 --seqName seq1 --start nStep --end nStep
 ```
 Additional to those calculations that are also available for the coarse-grain model, simuAnalysis provide a function to estimate FRET measurement (If the Flory Exponent is already known). The value of the exponent needs to be added to the configuration file, as the third element of the query sequence (already been added to the example). Afterward, type: ``` --calcFRET```. The results will be added to the CSV output file.\
 \
