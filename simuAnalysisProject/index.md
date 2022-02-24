@@ -9,7 +9,7 @@ For the atomistic model, this tool takes all the XTC files in the input director
 
 ## Configuration file:
 First, make sure to have a configuration file in the directory of results to be analyzed.\
-Configuration file name does not matter, only its suffix needs to be '.config'\
+Configuration file name does not matter, only **its suffix needs to be '.config'**\
 The configuration file should be written with a row for each sequence to be analyzed, as follows: sequenceName,residue1position,residue2position\
 Example:
 ~~~
