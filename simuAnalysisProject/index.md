@@ -9,6 +9,7 @@ For the atomistic model, this tool takes all the XTC files in the input director
 
 ## Configuration file:
 First, make sure to have a configuration file in the directory of results to be analyzed.\
+Configuration file name does not matter, only its suffix needs to be '.config'\
 The configuration file should be written with a row for each sequence to be analyzed, as follows: sequenceName,residue1position,residue2position\
 Example:
 ~~~
@@ -74,3 +75,4 @@ simuAnalysis --simulationType atomistic --d pathToThisRepo/Example/atomistic/seq
 Additional to those calculations that are also available for the coarse-grain model, simuAnalysis provide a function to estimate FRET measurement (If the Flory Exponent is already known). The value of the exponent needs to be added to the configuration file, as the third element of the query sequence (already been added to the example). Afterward, type: ``` --calcFRET```. The results will be added to the CSV output file.\
 \
 If the expected Flory Exponent of the sequence isn’t yet known, you can try to extimate it by using ```--runMode calcLSE.``` This will make simuAnalysis to spit out a figure with the Flory formula fitted to the observed results. If the fitted curve is firmly satisfying, the exponent can be extracted manually (denoted as the parameter ‘b’). 
+
