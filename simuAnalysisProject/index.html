@@ -93,7 +93,7 @@ You can add an alias to this tool by editing your .bashrc script:</p>
 
 <h2 id="how-to-use-the-tool">How to use the tool:</h2>
 
-<p>You can download an example results for short simulations of small proteins (12 residues) <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fdorigabay%2Fdorigabay.github.io%2Ftree%2Fmain%2FsimuAnalysisProject%2FExample">(from here)</a> , ran under both the atomistic and the coarse-grain model.</p>
+<p>You can download an example results for short simulations of small proteins (12 residues) <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fdorigabay%2Fdorigabay.github.io%2Ftree%2Fmain%2FsimuAnalysisProject%2FExample">(from here)</a>. Those are simulations results which ran under both the atomistic and the coarse-grain model.</p>
 
 <h3 id="coarse-grain-analysis">Coarse-grain analysis</h3>
 <p>simuAnalysis will search for the output directories which were given by the simulation program, and will unzip the files and convert them, if it hasn’t been made yet.
@@ -117,9 +117,9 @@ In order to analyze the coarse results you can simply type:</p>
 <p>In order to trim the beginning or the end of the simulation you can add <code class="language-plaintext highlighter-rouge">--start</code> or <code class="language-plaintext highlighter-rouge">--end</code> or both:</p>
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simuAnalysis</span><span class="w"> </span><span class="o">--</span><span class="n">simulationType</span><span class="w"> </span><span class="n">atomistic</span><span class="w"> </span><span class="o">--</span><span class="n">d</span><span class="w"> </span><span class="n">pathToThisRepo</span><span class="o">/</span><span class="n">Example</span><span class="o">/</span><span class="n">atomistic</span><span class="o">/</span><span class="n">seq1</span><span class="w"> </span><span class="o">--</span><span class="n">seqName</span><span class="w"> </span><span class="n">seq1</span><span class="w"> </span><span class="o">--</span><span class="n">start</span><span class="w"> </span><span class="n">nStep</span><span class="w"> </span><span class="o">--</span><span class="n">end</span><span class="w"> </span><span class="n">nStep</span><span class="w">
 </span></code></pre></div></div>
-<p>Additional to those calculations that are also available for the coarse-grain model, simuAnalysis provide a function to estimate FRET measurement (If the Flory Exponent is already known). The value of the exponent needs to be added to the configuration file, as the third element of the query sequence (already been added to the example). Afterward, type: <code class="language-plaintext highlighter-rouge">--calcFRET</code>. The results will be added to the CSV output file.<br />
+<p>Additional to those calculations that are also available for the coarse-grain model, simuAnalysis provides a function to estimate FRET measurement (If the Flory Exponent is already known). The value of the exponent needs to be added to the configuration file, as the third element of the query sequence (already been added to the example). With the command use: <code class="language-plaintext highlighter-rouge">--calcFRET</code>. The results will be added to the CSV output file.<br />
 <br />
-If the expected Flory Exponent of the sequence isn’t yet known, you can try to extimate it by using <code class="language-plaintext highlighter-rouge">--runMode calcLSE.</code> This will make simuAnalysis to spit out a figure with the Flory formula fitted to the observed results. If the fitted curve is firmly satisfying, the exponent can be extracted manually (denoted as the parameter ‘b’).</p>
+If the expected Flory Exponent of the sequence isn’t yet known, you can try to extimate it by using <code class="language-plaintext highlighter-rouge">--calcLSE.</code> This will make simuAnalysis to spit out a figure with the Flory formula fitted to the observed results. If the fitted curve is firmly satisfying, the exponent can be extracted manually (denoted as the parameter ‘b’).</p>
 
 
       </section>
