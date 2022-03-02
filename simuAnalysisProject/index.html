@@ -64,22 +64,9 @@
 For the atomistic model, this tool takes all the XTC files in the input directory and considers them as repeats of the same experiment.</p>
         
 
-<h2 id="installation">Installation:</h2>
-
-<p>Clone GitHub repository to your local machine with the following command:</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="n">https</span><span class="o">://</span><span class="n">github.com</span><span class="o">/</span><span class="n">dorigabay</span><span class="o">/</span><span class="n">simuAnalysisProject.git</span><span class="w">
-</span></code></pre></div></div>
-<p>Next, make sure you have all the dependencies for this tool (check: dependencies.txt)
-You can add an alias to this tool by editing your .bashrc script:</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vi</span><span class="w"> </span><span class="o">~/</span><span class="n">.bashrc</span><span class="w">
-</span></code></pre></div></div>
-<p>And then add the line:</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">alias</span><span class="w"> </span><span class="n">simuAnalysis</span><span class="o">=</span><span class="err">”</span><span class="n">theRepoPath</span><span class="o">/</span><span class="n">simuAnalysis.py</span><span class="err">”</span><span class="w">
-</span></code></pre></div></div>
-
-        
 <h2 id="configuration-file">Configuration file:</h2>
 <p>First, make sure to have a configuration file in the directory of results to be analyzed.<br />
+Configuration file name does not matter, only <strong>its suffix needs to be ‘.config’.</strong><br />
 The configuration file should be written with a row for each sequence to be analyzed, as follows: sequenceName,residue1position,residue2position<br />
 Example:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>seq1,1,12
@@ -91,36 +78,48 @@ seq3,1,12
 </code></pre></div></div>
 <p>Sequences names should be precise as typed in the command.</p>
 
-        
-<h2 id="how-to-use-the-tool">Running simuAnalysis:</h2>
+<h2 id="installation">Installation:</h2>
+
+<p>Clone GitHub repository to your local machine with the following command:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="n">https</span><span class="o">://</span><span class="n">github.com</span><span class="o">/</span><span class="n">dorigabay</span><span class="o">/</span><span class="n">simuAnalysisProject.git</span><span class="w">
+</span></code></pre></div></div>
+<p>Next, make sure you have all the dependencies for this tool (check: dependencies.txt)
+You can add an alias to this tool by editing your .bashrc script:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vi</span><span class="w"> </span><span class="o">~/</span><span class="n">.bashrc</span><span class="w">
+</span></code></pre></div></div>
+<p>And then add the line:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">alias</span><span class="w"> </span><span class="n">simuAnalysis</span><span class="o">=</span><span class="s1">'python3 theRepoPath/simuAnalysis.py'</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="how-to-use-the-tool">How to use the tool:</h2>
 
 <p>In the GitHub repository, there are example results for short simulations of small proteins (12 residues), ran under both the atomistic and the coarse-grain model.</p>
 
 <h3 id="coarse-grain-analysis">Coarse-grain analysis</h3>
 <p>simuAnalysis will search for the output directories which were given by the simulation program, and will unzip the files and convert them, if it hasn’t been made yet.
 In order to analyze the coarse results you can simply type:</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simuAnalysis</span><span class="w"> </span><span class="n">coarse</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">pathToThisRepo</span><span class="o">/</span><span class="n">Example</span><span class="o">/</span><span class="n">coarse</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simuAnalysis</span><span class="w"> </span><span class="o">--</span><span class="n">simulationType</span><span class="w"> </span><span class="n">coarse</span><span class="w"> </span><span class="o">--</span><span class="n">d</span><span class="w"> </span><span class="n">pathToThisRepo</span><span class="o">/</span><span class="n">Example</span><span class="o">/</span><span class="n">coarse</span><span class="w">
 </span></code></pre></div></div>
-<p>The analysis products will be saved as CSV files in a new directory named AnalyzedData, which has the same tree structure as the input directory, to preserve the order of directories to different experiments. If wanted you can change the output path by adding -out argument:</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simuAnalysis</span><span class="w"> </span><span class="n">coarse</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">pathToThisRepo</span><span class="o">/</span><span class="n">Example</span><span class="o">/</span><span class="n">coarse</span><span class="w"> </span><span class="o">-</span><span class="n">out</span><span class="w"> </span><span class="n">newPath</span><span class="w">
+<p>The analysis products will be saved as CSV files in a new directory named AnalyzedData, which has the same tree structure as the input directory, to preserve the order of directories to different experiments. If wanted you can change the output path by adding <code class="language-plaintext highlighter-rouge">--outputDir</code> argument:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simuAnalysis</span><span class="w"> </span><span class="o">--</span><span class="n">simulationType</span><span class="w"> </span><span class="n">coarse</span><span class="w"> </span><span class="o">--</span><span class="n">d</span><span class="w"> </span><span class="n">pathToThisRepo</span><span class="o">/</span><span class="n">Example</span><span class="o">/</span><span class="n">coarse</span><span class="w"> </span><span class="o">--</span><span class="n">outputDir</span><span class="w"> </span><span class="n">newPath</span><span class="w">
 </span></code></pre></div></div>
-<p>In order to trim the beginning or the end of the simulation you can add -start or -end or both:</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simuAnalysis</span><span class="w"> </span><span class="n">coarse</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">pathToThisRepo</span><span class="o">/</span><span class="n">Example</span><span class="o">/</span><span class="n">coarse</span><span class="w"> </span><span class="o">-</span><span class="n">start</span><span class="w"> </span><span class="n">nStep</span><span class="w"> </span><span class="o">-</span><span class="n">end</span><span class="w"> </span><span class="n">nStep</span><span class="w">
+<p>In order to trim the beginning or the end of the simulation you can add <code class="language-plaintext highlighter-rouge">--start</code> or <code class="language-plaintext highlighter-rouge">--end</code> or both:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simuAnalysis</span><span class="w"> </span><span class="o">--</span><span class="n">simulationType</span><span class="w"> </span><span class="n">coarse</span><span class="w"> </span><span class="o">--</span><span class="n">d</span><span class="w"> </span><span class="n">pathToThisRepo</span><span class="o">/</span><span class="n">Example</span><span class="o">/</span><span class="n">coarse</span><span class="w"> </span><span class="o">--</span><span class="n">start</span><span class="w"> </span><span class="n">nStep</span><span class="w"> </span><span class="o">--</span><span class="n">end</span><span class="w"> </span><span class="n">nStep</span><span class="w">
 </span></code></pre></div></div>
 
 <h3 id="atomistic-analysis">Atomistic analysis</h3>
 <p>For the simple analysis of atomistic XTC files, simply type:</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simuAnalysis</span><span class="w"> </span><span class="n">atomistic</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">pathToThisRepo</span><span class="o">/</span><span class="n">Example</span><span class="o">/</span><span class="n">atomistic</span><span class="o">/</span><span class="n">seq1</span><span class="w"> </span><span class="o">-</span><span class="n">seqName</span><span class="w"> </span><span class="n">seq1</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simuAnalysis</span><span class="w"> </span><span class="o">--</span><span class="n">simulationType</span><span class="w"> </span><span class="n">atomistic</span><span class="w"> </span><span class="o">--</span><span class="n">d</span><span class="w"> </span><span class="n">pathToThisRepo</span><span class="o">/</span><span class="n">Example</span><span class="o">/</span><span class="n">atomistic</span><span class="o">/</span><span class="n">seq1</span><span class="w"> </span><span class="o">--</span><span class="n">seqName</span><span class="w"> </span><span class="n">seq1</span><span class="w">
 </span></code></pre></div></div>
-<p>The analysis products will be saved as CSV files in a new directory named AnalyzedData, if wanted you can change the output path by adding -out argument:</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simuAnalysis</span><span class="w"> </span><span class="n">atomistic</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">pathToThisRepo</span><span class="o">/</span><span class="n">Example</span><span class="o">/</span><span class="n">atomistic</span><span class="o">/</span><span class="n">seq1</span><span class="w"> </span><span class="o">-</span><span class="n">seqName</span><span class="w"> </span><span class="n">seq1</span><span class="w"> </span><span class="o">-</span><span class="n">out</span><span class="w"> </span><span class="n">newPath</span><span class="w">
+<p>The analysis products will be saved as CSV files in a new directory named AnalyzedData, if wanted you can change the output path by adding <code class="language-plaintext highlighter-rouge">-out</code> argument:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simuAnalysis</span><span class="w"> </span><span class="o">--</span><span class="n">simulationType</span><span class="w"> </span><span class="n">atomistic</span><span class="w"> </span><span class="o">--</span><span class="n">d</span><span class="w"> </span><span class="n">pathToThisRepo</span><span class="o">/</span><span class="n">Example</span><span class="o">/</span><span class="n">atomistic</span><span class="o">/</span><span class="n">seq1</span><span class="w"> </span><span class="o">--</span><span class="n">seqName</span><span class="w"> </span><span class="n">seq1</span><span class="w"> </span><span class="o">--</span><span class="n">outputDir</span><span class="w"> </span><span class="n">newPath</span><span class="w">
 </span></code></pre></div></div>
-<p>In order to trim the beginning or the end of the simulation you can add -start or -end or both:</p>
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simuAnalysis</span><span class="w"> </span><span class="n">atomistic</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">pathToThisRepo</span><span class="o">/</span><span class="n">Example</span><span class="o">/</span><span class="n">atomistic</span><span class="o">/</span><span class="n">seq1</span><span class="w"> </span><span class="o">-</span><span class="n">seqName</span><span class="w"> </span><span class="n">seq1</span><span class="w"> </span><span class="o">-</span><span class="n">start</span><span class="w"> </span><span class="n">nStep</span><span class="w"> </span><span class="o">-</span><span class="n">end</span><span class="w"> </span><span class="n">nStep</span><span class="w">
+<p>In order to trim the beginning or the end of the simulation you can add <code class="language-plaintext highlighter-rouge">--start</code> or <code class="language-plaintext highlighter-rouge">--end</code> or both:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simuAnalysis</span><span class="w"> </span><span class="o">--</span><span class="n">simulationType</span><span class="w"> </span><span class="n">atomistic</span><span class="w"> </span><span class="o">--</span><span class="n">d</span><span class="w"> </span><span class="n">pathToThisRepo</span><span class="o">/</span><span class="n">Example</span><span class="o">/</span><span class="n">atomistic</span><span class="o">/</span><span class="n">seq1</span><span class="w"> </span><span class="o">--</span><span class="n">seqName</span><span class="w"> </span><span class="n">seq1</span><span class="w"> </span><span class="o">--</span><span class="n">start</span><span class="w"> </span><span class="n">nStep</span><span class="w"> </span><span class="o">--</span><span class="n">end</span><span class="w"> </span><span class="n">nStep</span><span class="w">
 </span></code></pre></div></div>
-<p>Additional to those calculations that are also available for the coarse-grain model, simuAnalysis provide a function to estimate FRET measurement (If the Flory Exponent is already known). The value of the exponent needs to be added to the configuration file, as the third element of the query sequence (already been added to the example). Afterward, type: <code class="language-plaintext highlighter-rouge">-calcFRET T</code>. The results will be added to the CSV output file.<br />
+<p>Additional to those calculations that are also available for the coarse-grain model, simuAnalysis provide a function to estimate FRET measurement (If the Flory Exponent is already known). The value of the exponent needs to be added to the configuration file, as the third element of the query sequence (already been added to the example). Afterward, type: <code class="language-plaintext highlighter-rouge">--calcFRET</code>. The results will be added to the CSV output file.<br />
 <br />
-If the expected Flory Exponent of the sequence isn’t yet known, you can try to extimate it by using <code class="language-plaintext highlighter-rouge">-runMode calcLSE.</code> This will make simuAnalysis to spit out a figure with the Flory formula fitted to the observed results. If the fitted curve is firmly satisfying, the exponent can be extracted manually (denoted as the parameter ‘b’).</p>
+If the expected Flory Exponent of the sequence isn’t yet known, you can try to extimate it by using <code class="language-plaintext highlighter-rouge">--runMode calcLSE.</code> This will make simuAnalysis to spit out a figure with the Flory formula fitted to the observed results. If the fitted curve is firmly satisfying, the exponent can be extracted manually (denoted as the parameter ‘b’).</p>
 
 
       </section>
